@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // Array.prototype.myFilter = function (callback, thisArg) {
+
+        //     const resultArray = [];
+        //     const array = this;
+
+        //     for (let i = 0; i < array.length; i++) {
+        //         if (i in array) {
+
+        //             if (callback.call(thisArg, array[i], i, array)) {
+        //                 resultArray.push(array[i]);
+        //             }
+        //         }
+        //     }
+        //     return resultArray;
+        // };
+
+        // const numbers = [1, 2, 3, 4, 5];
+
+        // console.log(numbers.myFilter((elem) => elem > 3));
+        ///////////////////////////////
+
+        const originalAlert = window.alert;
+        const originalPrompt = window.prompt;
+        const originalConfirm = window.confirm;
+
+        window.alert =  () => originalConfirm();
+        window.prompt = () => originalAlert();
+        window.confirm = () => originalPrompt();
+    </script>
+
+</body>
+
+</html>
