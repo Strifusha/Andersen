@@ -36,9 +36,14 @@
         const originalPrompt = window.prompt;
         const originalConfirm = window.confirm;
 
-        window.alert =  () => originalConfirm();
-        window.prompt = () => originalAlert();
-        window.confirm = () => originalPrompt();
+        window.alert =  (message) => originalConfirm(message);
+        window.prompt = (message) => originalAlert(message);
+        window.confirm = (message, def) => originalPrompt(message, def);
+
+        // confirm('how r u?', 'fine');
+        // prompt('pay attention!');
+        // alert('are u an owner?');
+       
     </script>
 
 </body>
