@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Stack {
+            constructor(maxLength = 10) {
+
+                if (typeof maxLength !== 'number' || isNaN(maxLength)) {
+                    throw new Error('invalid length!');
+                }
+                this.maxLength = maxLength;
+                this.arr = [];
+            }
+
+            push(elem) {
+                if (this.arr.length >= this.maxLength) throw new Error('Your stack is full!');
+                this.arr.push(elem);
+            }
+
+            pop() {
+                if (this.arr.length == 0) throw new Error('Your stack is empty!');
+                return this.arr.pop();
+            }
+
+            peek() {
+                return this.arr.length == 0 ? null : this.arr[this.arr.length - 1];
+            }
+
+            isEmpty() {
+                return this.arr.length == 0 ? true : false;
+            }
+
+            toArray() {
+                return this.arr;
+            }
+
+            static fromIterable(iterable) {
+                if (typeof iterable[Symbol.iterator] !== 'function') throw new Error('Object is not iterable!');
+                let newStack = new Stack(iterable.length);
+
+                for (let elem of iterable) {
+                    newStack.push(elem);
+                }
+                return newStack;
+            }
+        }
+
+        let stack = new Stack();
+
+        stack.maxLength = 1;
+        stack.push(112);
+        // stack.push(27868);
+        // stack.push(12200)
+        // stack.pop();
+        // console.log(stack.pop());
+        // // stack.peek();
+        // stack.fromIterable();
+
+        //   console.log(stack.toArray())
+        //   console.log(stack.push(27868))
+        //   console.log(stack.push(27890000))
+        // console.log(stack.peek())
+
+        let myArr = [1, 2, 3, 4, 5];
+        let myStack = Stack.fromIterable(myArr);
+
+        console.log(myStack.isEmpty());
+        console.log(myStack)
+    </script>
+</body>
+
+</html>
