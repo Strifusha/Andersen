@@ -57,14 +57,20 @@
         // let div = calculator.logDiv;
 
         // console.log(div())
-        
+
         ////////
 
-        setInterval(() => {
-            console.log('Macrotask is in process...');
-        }, 0);
+        function myFunc() {
+            return myFunc(setTimeout(() => {
 
-        
+                return setTimeout(() => {
+                    myFunc();
+
+                });
+            }));
+        }
+        myFunc()
+
     </script>
 </body>
 
