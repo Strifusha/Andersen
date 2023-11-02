@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        #myBtn{
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            border-color: #e920e2;
+            background-color: yellow;
+            position: absolute;
+            top: calc(50% - 27px);
+            left: calc(50% - 33px);
+        }
+        #myBtn:hover{
+            cursor: pointer;
+            background-color: #ffda44;
+        }
+        
+    </style>
+
+    <button id="myBtn">Click me!</button>
+
+    <script>
+        const myBtn = document.getElementById('myBtn');
+   
+        function changePositionSometimes(){
+            let tryYourLuck = Math.random() * 100;
+            if(tryYourLuck >= 50){
+                changePositionAlways();
+            }
+            console.log('Bad Luck =(');
+        }
+        
+        function changePositionAlways(){
+            let axisY = Math.random() * 100;
+            let axisX = Math.random() * 100;
+
+            myBtn.style.top = axisX + '%';
+            myBtn.style.left = axisY + '%';
+        }
+
+        myBtn.addEventListener('click', changePositionAlways);
+        myBtn.addEventListener('mouseenter', changePositionSometimes);
+
+    </script>
+</body>
+</html>

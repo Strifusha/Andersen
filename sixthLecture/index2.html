@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        #container {
+            position: absolute;
+            top: calc(50% - 200px);
+            left: calc(50% - 200px);
+            display: flex;
+            justify-content: space-between;
+            width: 500px;
+            height: 300px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        #stopwatch {
+            width: 49%;
+            border: 1px solid;
+            border-radius: 30px;
+        }
+
+        #stopwatch-face {
+            width: 65%;
+            border: rgb(0, 0, 0) 1px solid;
+            border-radius: 20px;
+            padding: 10px;
+            margin: auto;
+        }
+
+        #start,
+        #stop,
+        #reset {
+            background: #000;
+            color: #fff;
+            width: 20%;
+            padding: 10px;
+            border-radius: 20px;
+            margin: 20px 0;
+
+        }
+
+        #timer {
+            width: 49%;
+            background-color: rgb(0, 0, 0);
+            color: #fff;
+            border-radius: 30px;
+
+        }
+
+        #timer-face {
+            width: 65%;
+            border: #fff 1px solid;
+            border-radius: 20px;
+            padding: 10px;
+            margin: auto;
+        }
+
+        #add-minute {
+            background-color: #fff;
+            width: 20%;
+            padding: 10px;
+            border-radius: 20px;
+            margin: 20px 0;
+
+        }
+    </style>
+
+    <container id="container">
+
+        <div id="stopwatch">
+            <p>Set your stopwatch</p>
+            <div id="stopwatch-face">00:00.00</div>
+
+            <button id="start">start</button>
+            <button id="stop">stop</button>
+            <button id="reset">reset</button>
+        </div>
+
+        <div id="timer">
+            <p>Set your timer</p>
+            <div id="timer-face">00:00</div>
+
+            <button id="add-minute">+1m</button>
+        </div>
+    </container>
+
+    <script>
+        //stopwatch
+        const stopwatchFace = document.getElementById('stopwatch-face');
+        const startBtn = document.getElementById('start');
+        const stopBtn = document.getElementById('stop');
+        const resetBtn = document.getElementById('reset');
+        let isStopwatchWorking = false;
+        let [min, sec, msec] = [0, 0, 0];
+        let setStopwatch;
+
+        //timer
+        const addMinBtn = document.getElementById('add-minute');
+        const timerFace = document.getElementById('timer-face');
+        let [minTimer, secTimer] = [0, 0];
+        let timeOutTimer;
+
+
+        /////////////////////////////
+        function timeOutStopwatch(){
+            setStopwatch = setTimeout(() => {
+                msec++;
+
+                msec == 60 ? `${sec++, msec = 0}` : " ";
+                sec == 60 ? `${min++, sec = 0}` : " ";
+
+                if (min < 10) {
+                    sec < 10 ?
+                        stopwatchFace.innerHTML = '0' + min + ":" + '0' + sec + "." + `${msec < 10 ? '0' + msec : msec}` :
+                        stopwatchFace.innerHTML = '0' + min + ":" + sec + "." + `${msec < 10 ? '0' + msec : msec}`;
+                }
+
+                if (min >= 10) {
+                    sec < 10 ?
+                        stopwatchFace.innerHTML = min + ":" + '0' + sec + "." + `${msec < 10 ? '0' + msec : msec}` :
+                        stopwatchFace.innerHTML = min + ":" + sec + "." + `${msec < 10 ? '0' + msec : msec}`;
+                }
+                timeOutStopwatch()
+            }, 15)
+        }
+
+        function startStopwatch() {
+            isStopwatchWorking === false ? isStopwatchWorking = true && timeOutStopwatch() : " ";         
+        }
+
+        stopStopwatch = () => {
+            clearTimeout(setStopwatch);
+            isStopwatchWorking = false;
+        }
+
+        function resetStopwatch() {
+            clearTimeout(setStopwatch);
+            isStopwatchWorking = false;
+            [min, sec, msec] = [0, 0, 0];
+            stopwatchFace.innerHTML = '0' + min + ":" + '0' + sec + "." + '0' + msec;
+        }
+
+        /////////////////////////////
+        function addMinuteToTimer(){
+            minTimer++;
+            
+            timeOutTimer = setTimeout(() => {
+                secTimer;
+                timerFace.innerHTML = '0' + minTimer + ":" + "0" + secTimer;
+            })
+            
+
+        }
+
+
+        startBtn.addEventListener('click', startStopwatch);
+        stopBtn.addEventListener('click', stopStopwatch);
+        resetBtn.addEventListener('click', resetStopwatch);
+        addMinBtn.addEventListener('click',addMinuteToTimer);
+
+    </script>
+</body>
+
+</html>
