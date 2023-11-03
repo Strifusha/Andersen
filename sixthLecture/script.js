@@ -82,22 +82,15 @@
      }, 1000)
  }
 
- function addMinuteToTimer() {
+ function addMinuteToTimer(minute) {
      timerFace.classList.remove('blinking');
      clearTimeout(timeOutTimer);
-     minTimer += 1;
+     minTimer += minute;
      startTimer();
- }
-
- function add5MinToTimer() {
-     timerFace.classList.remove('blinking');
-     clearTimeout(timeOutTimer);
-     minTimer += 5;
-     startTimer()
  }
 
  startBtn.addEventListener('click', startStopwatch);
  stopBtn.addEventListener('click', stopStopwatch);
  resetBtn.addEventListener('click', resetStopwatch);
- addMinBtn.addEventListener('click', () => minTimer < 59 ? addMinuteToTimer() : " ");
- add5MinBtn.addEventListener('click', () => minTimer < 54 ? add5MinToTimer() : " ");
+ addMinBtn.addEventListener('click', () => minTimer < 59 ? addMinuteToTimer(1) : " ");
+ add5MinBtn.addEventListener('click', () => minTimer < 54 ? addMinuteToTimer(5) : " ");
