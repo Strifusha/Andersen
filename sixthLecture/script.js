@@ -40,7 +40,7 @@
      isStopwatchWorking === false ? isStopwatchWorking = true && timeOutStopwatch() : " ";
  }
 
- stopStopwatch = () => {
+ function stopStopwatch(){
      clearTimeout(setStopwatch);
      isStopwatchWorking = false;
  }
